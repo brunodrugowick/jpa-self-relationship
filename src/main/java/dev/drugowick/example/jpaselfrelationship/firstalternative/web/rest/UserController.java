@@ -1,9 +1,9 @@
-package dev.drugowick.example.jpaselfrelationship.web.rest;
+package dev.drugowick.example.jpaselfrelationship.firstalternative.web.rest;
 
-import dev.drugowick.example.jpaselfrelationship.domain.User;
-import dev.drugowick.example.jpaselfrelationship.infrastructure.repository.FriendRepository;
-import dev.drugowick.example.jpaselfrelationship.infrastructure.projection.ListOfFriendsProjection;
-import dev.drugowick.example.jpaselfrelationship.infrastructure.repository.UserRepository;
+import dev.drugowick.example.jpaselfrelationship.firstalternative.domain.User;
+import dev.drugowick.example.jpaselfrelationship.firstalternative.infrastructure.projection.ListOfFriendsProjection;
+import dev.drugowick.example.jpaselfrelationship.firstalternative.infrastructure.repository.FriendRepository;
+import dev.drugowick.example.jpaselfrelationship.firstalternative.infrastructure.repository.UserRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

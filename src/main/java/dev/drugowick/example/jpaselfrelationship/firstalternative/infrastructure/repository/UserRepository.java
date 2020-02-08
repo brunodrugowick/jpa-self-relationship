@@ -1,6 +1,6 @@
-package dev.drugowick.example.jpaselfrelationship.infrastructure.repository;
+package dev.drugowick.example.jpaselfrelationship.firstalternative.infrastructure.repository;
 
-import dev.drugowick.example.jpaselfrelationship.domain.User;
+import dev.drugowick.example.jpaselfrelationship.firstalternative.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
