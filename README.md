@@ -6,9 +6,13 @@ Este exemplo foi construído sob demanda, a pedido de [uma amiga](https://github
 
 A necessidade era um mapeamento de usuários no formato de amizade, onde cada usuário pode ser amigo de qualquer outro usuário.
 
-Eu sinceramente não tenho certeza da corretude dessa solução, mas segue o que eu consegui fazer.
+Eu testei dois métodos apresentados nessa pergunta do Stack Overflow: https://stackoverflow.com/questions/14633798/friend-relationships-with-jpa.
 
-## Endpoints
+# Alternativa 1
+
+Essa alternativa é mais complexa, mas parece ter atendido melhor os requisitos (ainda tem que testar inserção sem ser por SQL).
+
+## Alternativa 1 - Endpoints
 
 Todos os endpoints estão disponíveis no [Insomnia_requests.json](https://raw.githubusercontent.com/brunodrugowick/jpa-self-relationship/master/src/main/resources/static/Insomnia_requests.json) para serem importados no [Insomnia](https://insomnia.rest/download/). A saber:
 
@@ -17,9 +21,9 @@ Todos os endpoints estão disponíveis no [Insomnia_requests.json](https://raw.g
 - GET {{ host  }}/users/1/friends
 - GET {{ host  }}/friends
 
-## Estrutura do código
+## Alternativa 1 - Estrutura do Código
 
-O código respeita a seguinte estrutura:
+O código todo está dentro do pacote `firstalternative` e respeita a seguinte estrutura:
 
 - O pacote `domain` contém as entidades `User` (a entidade base) e `Friend` (a entidade através da qual o auto-relacionamento é implementado).
 - O pacote `infrastructure` contém:
@@ -28,13 +32,38 @@ O código respeita a seguinte estrutura:
 - O pacote `web` contém:
   - O pacote `rest` com controladores REST `UserController` e `FriendController`.
   
+# Alternativa 2
+
+Essa alternativa parece mais simples, mas a inserção pode ficar complicada. Nesse caso eu acabei já fazendo a inserção por código.
+
+## Alternativa 2 - Endpoints
+
+Todos os endpoints estão disponíveis no [Insomnia_requests.json](https://raw.githubusercontent.com/brunodrugowick/jpa-self-relationship/master/src/main/resources/static/Insomnia_requests.json) para serem importados no [Insomnia](https://insomnia.rest/download/). A saber:
+
+- GET {{ host  }}/people
+- GET {{ host  }}/people/1
+- GET {{ host  }}/people/1/friends
+
+## Alternativa 2 - Estrutura do Código
+
+O código todo está dentro do pacote `secondalternative` e respeita a seguinte estrutura:
+
+- O pacote `bootstrap` contém um CommandLineRunner que inicializa a tabela `person` (e consequentemente a `person_friends`) com dados.
+- O pacote `domain` contém a entidade `Person`. Note que nesse caso apenas uma entidade é necessária.
+- O pacote `infrastructure` contém:
+  - O pacote `repository` com o repositório Spring Data JPA.
+- O pacote `web` contém:
+  - O pacote `rest` com controlador REST `PersonController`.
+
+# Resources (para ambas alternativas)
+
 A pasta `resources`:
 
 - serve estaticamente o arquivo exportado do Insomnia apenas para conveniência.
-- contém um arquivo `import.sql` para carregar dados na inicialização.
+- contém um arquivo `import.sql` para carregar dados na inicialização para a Alternativa 1.
 - serve um `index.html` dentro da pasta `templates` só pra facilitar a vida, também.
 
-## Rodando o projeto
+# Rodando o projeto
 
 Você pode testar aqui [https://jpa-self-relationship.herokuapp.com](https://jpa-self-relationship.herokuapp.com).
 
@@ -43,7 +72,3 @@ Se não vai importar na sua IDE favorita pra ela se virar, basta rodar:
 ```shell script
 ./mvnw spring-boot:run
 ```
-
-
-
-

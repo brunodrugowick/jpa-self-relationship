@@ -1,7 +1,6 @@
-package dev.drugowick.example.jpaselfrelationship.domain;
+package dev.drugowick.example.jpaselfrelationship.firstalternative.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.persistence.*;
